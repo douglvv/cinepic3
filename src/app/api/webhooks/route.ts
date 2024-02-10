@@ -57,6 +57,9 @@ export async function POST(req: Request) {
   const { id } = evt.data;
   const eventType = evt.type;
 
+  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
+
+
   switch (eventType) {
     case "user.created":
       await axios.post("http://localhost:3000/api/createAccount", { id: id });
@@ -68,8 +71,6 @@ export async function POST(req: Request) {
       break;
   }
 
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`);
-  console.log("Webhook body:", body);
 
   return new Response("", { status: 200 });
 }

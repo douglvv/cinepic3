@@ -21,7 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${poppins.className},min-h-screen bg-[#020202]`}
+          className={`${poppins.className} min-h-screen bg-[#020202]`}
         >
           <Navbar />
           {children}
