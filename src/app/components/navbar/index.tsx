@@ -57,7 +57,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center justify-center gap-8">
-        {isLoaded && isSignedIn && (
+        {isSignedIn ? (
           <>
             <Link
               className="text-neutral-300 hover:text-neutral-200"
@@ -73,6 +73,17 @@ export default function Navbar() {
               afterSignOutUrl="/"
             />
           </>
+        ) : (
+          <Link href={"/sign-in"}>
+            <Button
+              className="text-neutral-300 hover:text-neutral-200
+          bg-red-800 hover:bg-red-900 active:bg-red-950 active:shadow-inner
+            font-semibold rounded-3xl"
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Sign In
+            </Button>
+          </Link>
         )}
 
         {/* <Link href={"/sign-up"}>
@@ -83,16 +94,6 @@ export default function Navbar() {
             Sign up
           </Button>
         </Link> */}
-        <Link href={"/sign-in"}>
-          <Button
-            className="text-neutral-400 hover:text-neutral-200
-          bg-red-800 hover:bg-red-900 active:bg-red-950 active:shadow-inner
-            font-semibold rounded-3xl"
-          >
-            <LogIn className="w-4 h-4 mr-2" />
-            Sign In
-          </Button>
-        </Link>
       </div>
     </nav>
   );

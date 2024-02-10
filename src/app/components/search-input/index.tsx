@@ -46,7 +46,7 @@ export default function SeachInput() {
             <FormItem>
               <FormControl>
                 <Input
-                  type="search"
+                  type="text"
                   className="ring-0 placeholder:text-neutral-400 text-neutral-200 
                   bg-transparent border-neutral-800 focus:border-neutral-800 sm:w-80 md:w-96"
                   placeholder="Search for a title"
