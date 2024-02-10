@@ -70,7 +70,7 @@ export default function Navbar() {
             <UserButton
               appearance={{ baseTheme: dark }}
               showName={false}
-              afterSignOutUrl="/"
+              afterSignOutUrl="/"              
             />
           </>
         ) : (

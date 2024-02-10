@@ -1,11 +1,10 @@
-import mongoose, { disconnect } from "mongoose";
-require('dotenv').config();
+import mongoose from "mongoose";
 
 const DB_URI = process.env.DB_URI as string;
 if (!DB_URI) throw new Error("DB_URI undefined.");
 
 const db = {
-  connect: async () => {
+  connect: async (): Promise<void> => {
     try {
       await mongoose.connect(DB_URI);
 
@@ -14,7 +13,7 @@ const db = {
       console.log('Error connecting to MongoDB: ', error);
     }
   },
-  disconnect: async () => {
+  disconnect: async (): Promise<void> => {
     try {
       await mongoose.disconnect();
 

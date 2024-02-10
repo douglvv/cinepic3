@@ -12,3 +12,14 @@ export const config = {
     matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
   // matcher: "",
 };
+
+
+
+/**********
+ * Configurar rotas protegidas 
+ * -> favorites
+ * -> editarconta
+ * -> deletar conta
+ * -> add to favorites
+ * -> remove from favorites
+ **********/
