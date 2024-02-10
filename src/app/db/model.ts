@@ -1,11 +1,21 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const userSchema = new mongoose.Schema(
+type favorites = {
+  imdbID: string | null | undefined
+}
+
+export interface IUser {
+  externalId: string;
+  favorites: Array<favorites>;
+}
+
+const userSchema = new mongoose.Schema<IUser>(
   {
     externalId: {
       type: String,
       required: true,
       unique: true,
+      
     },
     favorites: [
       {
@@ -20,6 +30,6 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 export default User;
