@@ -59,7 +59,7 @@ export default function SeachInput() {
 
         <button
           type="submit"
-          className="bg-transparent text-neutral-400 hover:text-neutral-200"
+          className="bg-transparent text-neutral-400 hover:text-neutral-200 w-fit"
           title="Search"
         >
           <Search />

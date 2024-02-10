@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import SeachInput from "../search-input";
 // import { useState, useEffect } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
+import { LogIn, Star } from "lucide-react";
+import { dark } from "@clerk/themes";
 
 export default function Navbar() {
   // const [color, setColor] = useState(false);
@@ -28,7 +30,7 @@ export default function Navbar() {
   return (
     <nav
       className={`w-full flex items-center justify-between sticky top-0 
-      flex-wrap z-50 bg-black/80 backdrop-blur-xl px-4 transition 
+      flex-wrap z-50 bg-black/80 backdrop-blur-xl px-8 transition 
       duration-300 h-[10vh] border-b border-neutral-800`}
     >
       <div className="flex items-center justify-center gap-3">
@@ -46,33 +48,49 @@ export default function Navbar() {
             priority={true}
           />
         </Link>
+
+        {/* {isLoaded && isSignedIn && <Link href={"/favorites"}>My favorites</Link>} */}
       </div>
 
       <div className="flex items-center justify-center w-[33%]l">
         <SeachInput />
       </div>
 
-      <div className="flex items-center justify-center gap-3">
+      <div className="flex items-center justify-center gap-8">
         {isLoaded && isSignedIn && (
-          <UserButton showName={true} afterSignOutUrl="/" />
+          <>
+            <Link
+              className="text-neutral-300 hover:text-neutral-200"
+              href={"/user/favorites"}
+              title="My Favorites"
+            >
+              <Star />
+            </Link>
+
+            <UserButton
+              appearance={{ baseTheme: dark }}
+              showName={false}
+              afterSignOutUrl="/"
+            />
+          </>
         )}
 
-        {/* <Link href={"/sign-in"}>
+        {/* <Link href={"/sign-up"}>
           <Button
             className="text-neutral-300 hover:text-neutral-200"
             variant={"link"}
           >
-            Sign in
+            Sign up
           </Button>
         </Link> */}
-        <Link href={"/sign-up"}>
+        <Link href={"/sign-in"}>
           <Button
-            className="text-neutral-300 hover:text-neutral-200
+            className="text-neutral-400 hover:text-neutral-200
           bg-red-800 hover:bg-red-900 active:bg-red-950 active:shadow-inner
-            font-semibold"
-            variant={"ghost"}
+            font-semibold rounded-3xl"
           >
-            Sign in
+            <LogIn className="w-4 h-4 mr-2" />
+            Sign In
           </Button>
         </Link>
       </div>

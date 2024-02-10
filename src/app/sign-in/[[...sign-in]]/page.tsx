@@ -3,8 +3,12 @@ import { dark } from "@clerk/themes";
 
 export default function Page() {
   return (
-    <div className="min-h-[90vh] container flex items-center mt-6 justify-center ">
-      <SignIn signUpUrl="/" redirectUrl={'/'} appearance={{baseTheme: dark}}/>
+    <div className="min-h-[90vh] container flex mt-12 justify-center ">
+      <SignIn
+        redirectUrl={"/"}
+        initialValues={{ username: "admin" }}
+        appearance={{ baseTheme: dark }}
+      />
     </div>
   );
 }
