@@ -31,6 +31,8 @@ function Results({
             ) : null}
           </Suspense>
         </div>
+
+        {/* Fazer paginação */}
       </section>
     </>
   );

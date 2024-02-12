@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { SearchResults } from "../title-results";
+import { Star } from "lucide-react";
 
 function TitleCard({ result }: { result: SearchResults }) {
   return (
@@ -21,6 +22,7 @@ function TitleCard({ result }: { result: SearchResults }) {
             // onError={(e) => (e.target.src = "/placeholderPoster.jpg")}
             loading="lazy"
           />
+                    
 
           {/* Blur Effect */}
           <div

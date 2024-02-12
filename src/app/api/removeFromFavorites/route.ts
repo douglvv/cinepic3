@@ -45,7 +45,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     await db.disconnect();
 
     return NextResponse.json(
-      { message: `Title: ${imdbID} added to User: ${id} favorites` },
+      { message: `Title: ${imdbID} removed from User: ${id}'s favorites` },
       { status: 200 }
     );
   } catch (error: any) {
