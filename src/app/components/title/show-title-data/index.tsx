@@ -68,14 +68,14 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
 
           <div className="flex flex-col max-w-2xl gap-2 mx-3">
             <div className="flex justify-between">
-              <h1 className="font-semibold text-4xl drop-shadow-sm text-neutral-800 dark:text-neutral-200">
+              <h1 className="font-semibold text-4xl drop-shadow-sm text-neutral-200">
                 {res.data.Title}
               </h1>
 
               <FavButton imdbID={imdbID} />
             </div>
 
-            <div className="flex flex-row gap-6 text-neutral-600 dark:text-neutral-300">
+            <div className="flex flex-row gap-6 text-neutral-300">
               <h3 className="text-sm font-thin tracking-wider">
                 {res.data.Year}
               </h3>
@@ -101,7 +101,7 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
               </div>
             </div>
 
-            <div className="flex flex-row gap-6 mb-6 text-neutral-600 dark:text-neutral-300">
+            <div className="flex flex-row gap-6 mb-6 text-neutral-300">
               <h3 className="text-sm font-thin tracking-wider -mx-1">
                 {res.data.Genre?.split(", ").map((item, index) => (
                   <span
@@ -116,21 +116,21 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
               </h3>
             </div>
 
-            <div className="flex flex-row gap-6 text-neutral-600 dark:text-neutral-300">
+            <div className="flex flex-row gap-6 text-neutral-300">
               <h3 className="text-sm font-thin tracking-wider">
                 Director:{" "}
                 <span className="font-medium">{res.data.Director}</span>
               </h3>
             </div>
 
-            <div className="flex flex-row gap-6 text-neutral-600 dark:text-neutral-300">
+            <div className="flex flex-row gap-6 text-neutral-300">
               <h3 className="text-sm font-thin tracking-wider">
                 Actors: <span className="font-medium">{res.data.Actors}</span>
               </h3>
             </div>
 
-            <div className="flex flex-row text-neutral-600 dark:text-neutral-300 mt-6">
-              <h6 className="font-thin tracking-wider text-xs md:text-sm text-neutral-800 dark:text-neutral-200">
+            <div className="flex flex-row mt-6">
+              <h6 className="font-thin tracking-wider text-xs md:text-sm text-neutral-200">
                 {res.data.Plot}
               </h6>
             </div>
