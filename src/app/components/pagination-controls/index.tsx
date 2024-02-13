@@ -72,7 +72,7 @@ function PaginationControls({
                 onClick={(): void =>
                   replace(`/results?query=${query}&page=1`)
                 }
-                isActive={currentPageNum === totalPages}
+                isActive={currentPageNum === 1}
               >
                 1
               </PaginationLink>
