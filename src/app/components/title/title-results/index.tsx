@@ -1,5 +1,6 @@
 import axios from "axios";
 import TitleCard from "../title-card";
+import PaginationControls from "../../pagination-controls";
 
 export type SearchResults = {
     Title: string;
@@ -11,7 +12,7 @@ export type SearchResults = {
 
 type SuccessfulResponse = {
     Search: SearchResults[];
-    totalResults: string;
+    totalResults: string
     Response: "True"
 }
 
@@ -30,7 +31,7 @@ async function TitleResults({
   query: string;
   currentPage: string;
 }) {
-  const res = await axios.get<ApiResponse>(`https://www.omdbapi.com/?apikey=6b526007&s=${query}&page=${currentPage}`)
+  const res = await axios.get<ApiResponse>(`https://www.omdbapi.com/?apikey=6b526007&s=${query}&page=${currentPage}`);  
 
   return (
     <>
@@ -43,6 +44,7 @@ async function TitleResults({
           {res.data.Search.map((result: SearchResults, i: number) => (
             <TitleCard result={result} key={i} />
           ))}
+          <PaginationControls  currentPage={currentPage} perPage={"10"} totalResults={res.data.totalResults} query={query}/>
         </div>
       )}
     </>

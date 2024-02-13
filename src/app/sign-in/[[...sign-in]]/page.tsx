@@ -6,7 +6,6 @@ export default function Page() {
     <div className="min-h-[90vh] container flex mt-12 justify-center ">
       <SignIn
         redirectUrl={"/"}
-        initialValues={{ username: "admin" }}
         appearance={{ baseTheme: dark }}
       />
     </div>
