@@ -4,6 +4,7 @@ import type { FailedResponse } from "../title-results";
 import { redirect } from "next/navigation";
 import StarRating from "../../starts-rating";
 import { Clock10 } from "lucide-react";
+import FavButton from "../../fav-button";
 
 type Rating = {
   Source: string;
@@ -46,8 +47,6 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
     `https://www.omdbapi.com/?apikey=6b526007&i=${imdbID}&plot=full`
   );
 
-  console.log("res: ",res)
-
   return (
     <>
       {res.data.Response === "False" ? (
@@ -68,9 +67,13 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
           </div>
 
           <div className="flex flex-col max-w-2xl gap-2 mx-3">
-            <h1 className="font-semibold text-4xl drop-shadow-sm text-neutral-800 dark:text-neutral-200">
-              {res.data.Title}
-            </h1>
+            <div className="flex justify-between">
+              <h1 className="font-semibold text-4xl drop-shadow-sm text-neutral-800 dark:text-neutral-200">
+                {res.data.Title}
+              </h1>
+
+              <FavButton imdbID={imdbID} />
+            </div>
 
             <div className="flex flex-row gap-6 text-neutral-600 dark:text-neutral-300">
               <h3 className="text-sm font-thin tracking-wider">

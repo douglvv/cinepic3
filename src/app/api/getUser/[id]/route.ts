@@ -12,8 +12,6 @@ export async function GET(
   try {
     const id = params.id
 
-    console.log(id);
-
     if (!id) {
       return NextResponse.json(
         { message: "Missing information" },
@@ -38,7 +36,7 @@ export async function GET(
 
     await db.disconnect();
 
-    return NextResponse.json({ user: userData }, { status: 200 });
+    return NextResponse.json(userData, { status: 200 });
   } catch (error: any) {
     console.log(error.message);
     return NextResponse.json({ message: error.message }, { status: 500 });

@@ -8,6 +8,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const { id, imdbID }: { id: string; imdbID: string } = await req.json();
 
+
     if (!id || !imdbID) {
       return NextResponse.json(
         { message: "Missing information" },
@@ -17,13 +18,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     await db.connect();
 
-    const user = (await User.findOne({
+    const user = await User.findOne({
       externalId: id,
-    })) as HydratedDocument<IUser>;
+    }) as HydratedDocument<IUser>;
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
+
+    console.log(user);
 
     const isTitleAlreadyFavorite: boolean = user.favorites.some(
       (favorite) => favorite.imdbID === imdbID
