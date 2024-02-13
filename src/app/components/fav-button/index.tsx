@@ -16,16 +16,19 @@ type User = {
 };
 
 function FavButton({ imdbID }: { imdbID: string }) {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const [isFavorite, setIsFavorite] = useState(false);
+
+  console.log("user: ",user)
 
   const fetchUser = async (): Promise<User | null> => {
     try {
-      if (!user) return null; // Ensure user is available
+      if (!user) return null;
       const res = await axios.get<User>(
         `http://localhost:3000/api/getUser/${user.id}`
       );
 
+      console.log(res.data)
       return res.data;
     } catch (error: any) {
       console.log(error.message);
@@ -44,6 +47,7 @@ function FavButton({ imdbID }: { imdbID: string }) {
           imdbID: imdbID,
         }
       );
+      console.log("handleclick: ", user?.id)
       if (res.status === 200) setIsFavorite(!isFavorite);
     } catch (error: any) {
       console.log(error.message);
@@ -61,7 +65,7 @@ function FavButton({ imdbID }: { imdbID: string }) {
       }
     };
     loadUser();
-  }, [imdbID, user]);
+  }, [imdbID, user, isLoaded]);
 
   return (
     <div className="flex items-center justify-center p-1 rounded-full bg-transparent mx-4">

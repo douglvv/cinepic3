@@ -7,7 +7,7 @@ import { NextResponse, type NextRequest } from "next/server.js";
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const { id, imdbID }: { id: string; imdbID: string } = await req.json();
-
+    console.log("id: ", id, "imdbID: ", imdbID)
 
     if (!id || !imdbID) {
       return NextResponse.json(
