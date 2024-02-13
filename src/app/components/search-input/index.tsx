@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
 const formSchema = z.object({
   query: z.string().max(50),
+  page: z.string().max(50),
 });
 
 export default function SeachInput() {
@@ -19,6 +20,7 @@ export default function SeachInput() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       query: "",
+      page: "1"
     },
   });
 
@@ -27,6 +29,9 @@ export default function SeachInput() {
 
     if (values.query) params.set("query", values.query);
     else params.delete("query");
+
+    if(values.page) params.set("page", values.page);
+    else params.delete("page");
 
     const url = `/results?${params.toString()}`;
 
