@@ -15,7 +15,7 @@ type SuccessfulResponse = {
     Response: "True"
 }
 
-type FailedResponse = {
+export type FailedResponse = {
     Response: "False"
     Error: string
 }
