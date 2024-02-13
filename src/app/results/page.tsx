@@ -16,7 +16,7 @@ function Results({
   };
 }) {
   const query = searchParams?.query || "";
-  const currentPage = searchParams?.page || '1';
+  const currentPage = searchParams?.page || "1";
 
   return (
     <>
@@ -31,8 +31,6 @@ function Results({
             ) : null}
           </Suspense>
         </div>
-
-        {/* Fazer paginação */}
       </section>
     </>
   );

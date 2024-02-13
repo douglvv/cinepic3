@@ -27,7 +27,6 @@ function PaginationControls({
   const currentPageNum = parseInt(currentPage);
   const pageStart = Math.max(1, currentPageNum - 2);
   const pageEnd = Math.min(totalPages, currentPageNum + 2);
-  const perPageNum = parseInt(perPage);
 
   const hasPreviousPage = (): boolean => parseInt(currentPage) > 1;
 
@@ -65,11 +64,30 @@ function PaginationControls({
           />
         </PaginationItem>
 
-        
+        {/* Elipsis / first page */}
+        {totalPages > 5 && currentPageNum >= totalPages - 3 ? (
+          <>          
+            <PaginationItem>
+              <PaginationLink
+                onClick={(): void =>
+                  replace(`/results?query=${query}&page=1`)
+                }
+                isActive={currentPageNum === totalPages}
+              >
+                1
+              </PaginationLink>
+            </PaginationItem>
+
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          </>
+        ) : null}
+
         {renderPaginationItems()}
 
         {/* Elipsis / last page */}
-        {totalPages > 5 ? (
+        {totalPages > 5 && totalPages > currentPageNum + 3 ? (
           <>
             <PaginationItem>
               <PaginationEllipsis />
