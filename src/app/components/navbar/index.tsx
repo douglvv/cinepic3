@@ -57,7 +57,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center justify-center gap-8">
-        {isSignedIn ? (
+        {isSignedIn && isLoaded ? (
           <>
             <Link
               className="text-neutral-300 hover:text-neutral-200"
@@ -70,7 +70,7 @@ export default function Navbar() {
             <UserButton
               appearance={{ baseTheme: dark }}
               showName={false}
-              afterSignOutUrl="/"              
+              afterSignOutUrl="/"
             />
           </>
         ) : (
@@ -85,15 +85,6 @@ export default function Navbar() {
             </Button>
           </Link>
         )}
-
-        {/* <Link href={"/sign-up"}>
-          <Button
-            className="text-neutral-300 hover:text-neutral-200"
-            variant={"link"}
-          >
-            Sign up
-          </Button>
-        </Link> */}
       </div>
     </nav>
   );

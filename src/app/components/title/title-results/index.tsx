@@ -3,25 +3,25 @@ import TitleCard from "../title-card";
 import PaginationControls from "../../pagination-controls";
 
 export type SearchResults = {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
-}
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+};
 
 type SuccessfulResponse = {
-    Search: SearchResults[];
-    totalResults: string
-    Response: "True"
-}
+  Search: SearchResults[];
+  totalResults: string;
+  Response: "True";
+};
 
 export type FailedResponse = {
-    Response: "False"
-    Error: string
-}
+  Response: "False";
+  Error: string;
+};
 
-type ApiResponse = SuccessfulResponse | FailedResponse
+type ApiResponse = SuccessfulResponse | FailedResponse;
 
 // TODO: Pagination usando o totalResults
 async function TitleResults({
@@ -31,7 +31,9 @@ async function TitleResults({
   query: string;
   currentPage: string;
 }) {
-  const res = await axios.get<ApiResponse>(`https://www.omdbapi.com/?apikey=6b526007&s=${query}&page=${currentPage}`);  
+  const res = await axios.get<ApiResponse>(
+    `https://www.omdbapi.com/?apikey=6b526007&s=${query}&page=${currentPage}`
+  );
 
   return (
     <>
@@ -44,7 +46,13 @@ async function TitleResults({
           {res.data.Search.map((result: SearchResults, i: number) => (
             <TitleCard result={result} key={i} />
           ))}
-          <PaginationControls  currentPage={currentPage} perPage={"10"} totalResults={res.data.totalResults} query={query}/>
+
+          <PaginationControls
+            currentPage={currentPage}
+            perPage={"10"}
+            totalResults={res.data.totalResults}
+            query={query}
+          />
         </div>
       )}
     </>

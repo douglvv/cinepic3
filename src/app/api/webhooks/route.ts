@@ -49,10 +49,6 @@ export async function POST(req: Request) {
     });
   }
 
-  /***
-   * Cadastrar, editar, excluir no banco com esses dados
-   * associar id com o externalId no banco
-   ***/
   // Get the ID and type
   const { id } = evt.data;
   const eventType = evt.type;
