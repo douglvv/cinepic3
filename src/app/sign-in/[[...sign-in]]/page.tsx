@@ -7,6 +7,7 @@ export default function Page() {
       <SignIn
         redirectUrl={"/"}
         appearance={{ baseTheme: dark }}
+        afterSignInUrl={'/browse'}
       />
     </div>
   );

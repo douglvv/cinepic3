@@ -7,6 +7,7 @@ export default function Page() {
       <SignUp
         appearance={{ baseTheme: dark }}
         redirectUrl={"/"}
+        afterSignUpUrl={'/browse'}
       />
     </div>
   );

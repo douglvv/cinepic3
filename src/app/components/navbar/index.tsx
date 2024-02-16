@@ -48,8 +48,6 @@ export default function Navbar() {
             priority={true}
           />
         </Link>
-
-        {/* {isLoaded && isSignedIn && <Link href={"/favorites"}>My favorites</Link>} */}
       </div>
 
       <div className="flex items-center justify-center w-[33%]l">
