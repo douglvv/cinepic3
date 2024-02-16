@@ -4,7 +4,6 @@ import { auth } from "@clerk/nextjs";
 
 function Browse() {
   const { userId } = auth();
-  console.log(userId);
   return (
     <>
       <div
@@ -15,6 +14,7 @@ function Browse() {
           <h1 className="text-2xl font-semibold">Browse</h1>
         </div>
         <FavoritesCarousel userId={userId} />
+
       </div>
     </>
   );

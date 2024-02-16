@@ -22,7 +22,7 @@ type User = {
 };
 
 async function FavoritesCarousel({ userId }: { userId: string | null }) {
-  console.log(userId);
+  if(!userId) return null
 
   const res = await axios.get<User>(
     `http://localhost:3000/api/getUser/${userId}`
@@ -30,7 +30,7 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
 
   return (
     <>
-      {res.data && res.data.favorites ? (
+      {res.data && res.data.favorites.length > 0 ? (
         <section className="container max-w-6xl text-neutral-200">
           <Link
             href={"/my-favorites"}
@@ -43,13 +43,13 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
            dragFree: true,
            loop: false,
           }}>
-            <CarouselContent className="mt-4 lg:-mr-24">
-              {res.data.favorites.map((item, index) => (
+            <CarouselContent className="mt-4">
+              {res.data.favorites.slice().reverse().map((item, index) => (
                 <CarouselItem
                   key={item.imdbID}
                   className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
                 >
-                  <Link href={`/title/${item.imdbID}`}>
+                  <Link href={`/title/${item.imdbID}`} className="flex items-center justify-center">
                     <img
                       className="h-auto sm:max-w-[175px] max-w-[233.33px] aspect-2/3
                   shadow-md hover:shadow-lg dark:hover:shadow-lg
