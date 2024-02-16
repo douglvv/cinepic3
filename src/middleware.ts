@@ -32,6 +32,7 @@ export default authMiddleware({
     "/:type/:imdbID",
     "/api/webhooks",
     "/api/createAccount",
+    "/api/getUser/(.*)"
   ],
   signInUrl: "/sign-in",
   // apiRoutes: "/api/(.*)",
