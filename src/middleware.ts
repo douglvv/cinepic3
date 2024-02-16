@@ -33,7 +33,7 @@ export default authMiddleware({
     "/api/webhooks",
     "/api/createAccount",
   ],
-  signInUrl: "/sign-in"
+  signInUrl: "/sign-in",
   // apiRoutes: "/api/(.*)",
 });
 

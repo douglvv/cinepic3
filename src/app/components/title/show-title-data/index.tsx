@@ -72,7 +72,7 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
                 {res.data.Title}
               </h1>
 
-              <FavButton imdbID={imdbID} />
+              <FavButton imdbID={imdbID} posterUrl={res.data.Poster} />
             </div>
 
             <div className="flex flex-row gap-6 text-neutral-300">

@@ -15,7 +15,7 @@ type User = {
   favorites: Favorite[];
 };
 
-function FavButton({ imdbID }: { imdbID: string }) {
+function FavButton({ imdbID, posterUrl }: { imdbID: string, posterUrl: string }) {
   const { user, isLoaded } = useUser();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -45,6 +45,7 @@ function FavButton({ imdbID }: { imdbID: string }) {
         {
           id: user?.id,
           imdbID: imdbID,
+          posterUrl: posterUrl
         }
       );
       console.log("handleclick: ", user?.id)

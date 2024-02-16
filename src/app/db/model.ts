@@ -1,7 +1,8 @@
 import mongoose, { Schema } from "mongoose";
 
 type favorites = {
-  imdbID: string | null | undefined
+  imdbID: string | null | undefined,
+  posterUrl: string | null | undefined
 }
 
 export interface IUser {
@@ -22,6 +23,10 @@ const userSchema = new mongoose.Schema<IUser>(
         imdbID: {
           type: String,
         },
+        posterUrl: {
+          type: String,
+          default: ""
+        }
       },
     ],
   },
