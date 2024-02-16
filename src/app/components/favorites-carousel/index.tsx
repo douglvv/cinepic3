@@ -38,8 +38,12 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
           >
             My Favorites:
           </Link>
-          <Carousel>
-            <CarouselContent className="mt-4">
+          <Carousel opts={{
+           align: 'center',
+           dragFree: true,
+           loop: false,
+          }}>
+            <CarouselContent className="mt-4 lg:-mr-24">
               {res.data.favorites.map((item, index) => (
                 <CarouselItem
                   key={item.imdbID}
@@ -66,7 +70,6 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
           </Carousel>
         </section>
       ) : (
-        // </section>
         <section className="flex flex-col text-neutral-400">
           <Link
             href={"/my-favorites"}
