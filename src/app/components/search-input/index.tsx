@@ -12,7 +12,13 @@ const formSchema = z.object({
   page: z.string().max(50),
 });
 
-export default function SeachInput() {
+export default function SeachInput({
+  isOpen,
+  toggleSearchBar,
+}: {
+  isOpen?: boolean;
+  toggleSearchBar?: Function;
+}) {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
 
@@ -20,7 +26,7 @@ export default function SeachInput() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       query: "",
-      page: "1"
+      page: "1",
     },
   });
 
@@ -30,10 +36,12 @@ export default function SeachInput() {
     if (values.query) params.set("query", values.query);
     else params.delete("query");
 
-    if(values.page) params.set("page", values.page);
+    if (values.page) params.set("page", values.page);
     else params.delete("page");
 
     const url = `/results?${params.toString()}`;
+
+    if(isOpen && toggleSearchBar) toggleSearchBar();
 
     replace(url);
   }
@@ -41,7 +49,7 @@ export default function SeachInput() {
   return (
     <Form {...form}>
       <form
-        className="flex w-full items-center gap-2 max-w-lg"
+        className="flex w-full items-center justify-center gap-2 max-w-lg"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
