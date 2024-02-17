@@ -50,7 +50,7 @@ function PaginationControls({
   };
 
   return (
-    <Pagination className="text-neutral-200 ">
+    <Pagination className="text-neutral-300">
       <PaginationContent>
         {/* Previous */}
         <PaginationItem>

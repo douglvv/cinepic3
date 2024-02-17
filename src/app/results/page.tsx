@@ -25,6 +25,7 @@ function Results({
         className="min-h-[85vh] h-fit max-w-6xl mx-auto flex justify-center"
       >
         <div className="my-8 mx-4 md:mx-8 w-full">
+        <h1 className="text-2xl text-neutral-200 font-semibold">Results:</h1>
           <Suspense key={query + currentPage} fallback={<TitleCardSkeleton />}>
             {query.length > 0 ? (
               <TitleResults query={query} currentPage={currentPage} />

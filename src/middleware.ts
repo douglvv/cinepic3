@@ -35,7 +35,7 @@ export default authMiddleware({
     "/api/getUser/(.*)"
   ],
   signInUrl: "/sign-in",
-  // apiRoutes: "/api/(.*)",
+  apiRoutes: "/api/(.*)",
 });
 
 export const config = {
