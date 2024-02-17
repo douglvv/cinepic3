@@ -2,7 +2,6 @@
 function InfoSection() {
   return (
     <>
-
       <section
         className="min-h-full mx-auto container grid grid-cols-1 md:grid-cols-2 gap-4 bg-none"
         id="info"
@@ -27,6 +26,7 @@ function InfoSection() {
         </div>
       </section>
 
+      <hr className="h-px border-t-0 bg-neutral-300 opacity-100 dark:opacity-50" />      
       
 
       <section className="min-h-full mx-auto container grid grid-cols-1 md:grid-cols-2 gap-4 bg-none ">
@@ -49,7 +49,7 @@ function InfoSection() {
         </div>
       </section>
 
-      
+      <hr className="h-px border-t-0 bg-neutral-300 opacity-100 dark:opacity-50" />      
 
       <section className="min-h-full mx-auto container grid grid-cols-1 md:grid-cols-2 gap-4 bg-none">
         <div className="m-3 p-3 w-full flex flex-col justify-center text-center md:text-start">
