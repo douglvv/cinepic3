@@ -15,11 +15,17 @@ type User = {
   favorites: Favorite[];
 };
 
-function FavButton({ imdbID, posterUrl }: { imdbID: string, posterUrl: string }) {
+function FavButton({
+  imdbID,
+  posterUrl,
+}: {
+  imdbID: string;
+  posterUrl: string;
+}) {
   const { user, isLoaded } = useUser();
   const [isFavorite, setIsFavorite] = useState(false);
 
-  console.log("user: ",user)
+  console.log("user: ", user);
 
   const fetchUser = async (): Promise<User | null> => {
     try {
@@ -28,7 +34,7 @@ function FavButton({ imdbID, posterUrl }: { imdbID: string, posterUrl: string })
         `http://localhost:3000/api/getUser/${user.id}`
       );
 
-      console.log(res.data)
+      console.log(res.data);
       return res.data;
     } catch (error: any) {
       console.log(error.message);
@@ -38,18 +44,23 @@ function FavButton({ imdbID, posterUrl }: { imdbID: string, posterUrl: string })
 
   const handleClick = async (): Promise<void> => {
     try {
-      const res = await axios.post(
-        `http://localhost:3000/api/${
-          isFavorite ? "removeFromFavorites" : "addToFavorites"
-        }`,
-        {
-          id: user?.id,
-          imdbID: imdbID,
-          posterUrl: posterUrl
-        }
-      );
-      console.log("handleclick: ", user?.id)
-      if (res.status === 200) setIsFavorite(!isFavorite);
+      if (user && isLoaded) {
+        const res = await axios.post(
+          `http://localhost:3000/api/${
+            isFavorite ? "removeFromFavorites" : "addToFavorites"
+          }`,
+          {
+            id: user?.id,
+            imdbID: imdbID,
+            posterUrl: posterUrl,
+          }
+        );
+        // console.log("handleclick: ", user?.id);
+        if (res.status === 200) setIsFavorite(!isFavorite);
+      }
+      else {
+        alert("Please sign in to add to favorites.")
+      }
     } catch (error: any) {
       console.log(error.message);
     }
