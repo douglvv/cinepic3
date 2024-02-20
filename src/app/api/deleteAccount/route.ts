@@ -18,7 +18,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
     await User.findOneAndDelete({ externalId: id });
     console.log(`User ${id} deleted.`)
 
-    await db.disconnect();
+    await db.disconnect()
 
     return NextResponse.json(
       { message: `User ${id} deleted.` },

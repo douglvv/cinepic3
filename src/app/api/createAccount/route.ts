@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       favorites: user.favorites,
     };
 
-    await db.disconnect();
+    // await db.disconnect();
 
     return NextResponse.json({user: userData}, { status: 201 });
   } catch (error: any) {

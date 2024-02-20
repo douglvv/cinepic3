@@ -17,7 +17,7 @@ const db = {
     try {
       await mongoose.connection.close();
 
-      console.log('Disconnected from MongoDB');
+      // console.log('Disconnected from MongoDB');
     } catch (error) {
       console.log('Error disconnecting from MongoDB:', error)
     }

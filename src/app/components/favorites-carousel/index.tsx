@@ -28,10 +28,10 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
 
   return (
     <>
-      {res.data && res.data.favorites.length > 0 ? (
+      {res.status === 200 && res.data && res.data.favorites.length > 0 ? (
         <section className="container max-w-6xl text-neutral-200">
           <Link
-            href={"favorites"}
+            href={"/favorites"}
             className="text-neutral-300 underline"
           >
             My Favorites:
@@ -70,8 +70,8 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
       ) : (
         <section className="flex flex-col text-neutral-400">
           <Link
-            href={"/my-favorites"}
-            className="text-neutral-300 hover:underline"
+            href={"/favorites"}
+            className="text-neutral-300 underline"
           >
             My Favorites:
           </Link>
