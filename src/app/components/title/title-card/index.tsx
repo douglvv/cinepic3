@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { SearchResults } from "../title-results";
-import { Star } from "lucide-react";
 
 function TitleCard({ result }: { result: SearchResults }) {
   return (

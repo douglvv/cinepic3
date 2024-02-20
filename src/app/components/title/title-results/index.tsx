@@ -23,7 +23,6 @@ export type FailedResponse = {
 
 type ApiResponse = SuccessfulResponse | FailedResponse;
 
-// TODO: Pagination usando o totalResults
 async function TitleResults({
   query,
   currentPage,
@@ -38,7 +37,10 @@ async function TitleResults({
   return (
     <>
       {res.data.Response === "False" ? (
-        <div className="flex justify-center mx-4 md:mx-8 w-full mt-3 text-neutral-600 text-sm dark:text-neutral-400">
+        <div
+          className="flex justify-center mx-4 md:mx-8 w-full mt-3
+         text-neutral-600 text-sm dark:text-neutral-400"
+        >
           <p>No results found. Please try again</p>
         </div>
       ) : (

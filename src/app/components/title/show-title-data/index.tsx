@@ -76,22 +76,22 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
             </div>
 
             <div className="flex flex-row gap-6 text-neutral-300">
-              <h3 className="text-sm font-thin tracking-wider">
+              <h3 className="text-xs md:text-sm font-thin tracking-wider">
                 {res.data.Year}
               </h3>
               {res.data.totalSeasons && (
-                <h3 className="text-sm font-thin tracking-wider">
+                <h3 className="text-xs md:text-sm font-thin tracking-wider">
                   Seasons: {res.data.totalSeasons}
                 </h3>
               )}
               <div className="flex gap-1">
                 <Clock10 size={20} strokeWidth={1} />
-                <h3 className="text-sm font-thin tracking-wider">
+                <h3 className="text-xs md:text-sm font-thin tracking-wider">
                   {res.data.Runtime}
                 </h3>
               </div>
               <div className="flex gap-2">
-                <h3 className="text-sm font-thin tracking-wider">
+                <h3 className="text-xs md:text-sm font-thin tracking-wider">
                   {res.data.imdbRating}
                   <small className="dark:text-neutral-400 text-neutral-500 italic">
                     /10
@@ -102,7 +102,7 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
             </div>
 
             <div className="flex flex-row gap-6 mb-6 text-neutral-300">
-              <h3 className="text-sm font-thin tracking-wider -mx-1">
+              <h3 className="text-xs md:text-sm font-thin tracking-wider -mx-1">
                 {res.data.Genre?.split(", ").map((item, index) => (
                   <span
                     key={index}
@@ -117,14 +117,14 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
             </div>
 
             <div className="flex flex-row gap-6 text-neutral-300">
-              <h3 className="text-sm font-thin tracking-wider">
+              <h3 className="text-xs md:text-sm font-thin tracking-wider">
                 Director:{" "}
                 <span className="font-medium">{res.data.Director}</span>
               </h3>
             </div>
 
             <div className="flex flex-row gap-6 text-neutral-300">
-              <h3 className="text-sm font-thin tracking-wider">
+              <h3 className="text-xs md:text-sm font-thin tracking-wider">
                 Actors: <span className="font-medium">{res.data.Actors}</span>
               </h3>
             </div>
