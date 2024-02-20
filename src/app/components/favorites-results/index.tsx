@@ -13,7 +13,9 @@ type User = {
 };
 
 async function FavoritesResults({ id }: { id: string | null }) {
-  if (!id) return null;
+  if(!id) return null
+  // console.log("user id from favorites results: ", id)
+
 
   const res = await APIService.getUser(id);
 
@@ -21,7 +23,7 @@ async function FavoritesResults({ id }: { id: string | null }) {
     <>
       {res.data && res.data.favorites.length > 0 ? (
         <div className="my-8 flex flex-row flex-wrap gap-4 justify-center">
-          {res.data.favorites.map((item: Favorite, i: number) => (
+          {res.data.favorites.slice().reverse().map((item: Favorite, i: number) => (
             <FavoriteCard item={item} key={item.imdbID} />
           ))}
         </div>

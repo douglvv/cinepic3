@@ -8,18 +8,18 @@ const db = {
     try {
       await mongoose.connect(DB_URI);
 
-      console.log('Connected to MongoDB');
+      // console.log('Connected to MongoDB');
     } catch (error) {
       console.log('Error connecting to MongoDB: ', error);
     }
   },
   disconnect: async (): Promise<void> => {
     try {
-      await mongoose.disconnect();
+      await mongoose.connection.close();
 
-      console.log('Disconnected to MongoDB');
+      console.log('Disconnected from MongoDB');
     } catch (error) {
-      console.log('Error disconnection to MongoDB:', error)
+      console.log('Error disconnecting from MongoDB:', error)
     }
   }
 };

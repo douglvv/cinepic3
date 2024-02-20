@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import APIService from "@/app/services/APIService";
 import {
   Carousel,
   CarouselContent,
@@ -8,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import axios from "axios";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 type Favorite = {
   imdbID: string;
@@ -24,17 +24,15 @@ type User = {
 async function FavoritesCarousel({ userId }: { userId: string | null }) {
   if(!userId) return null
 
-  const res = await axios.get<User>(
-    `http://localhost:3000/api/getUser/${userId}`
-  );
+  const res = await APIService.getUser(userId);
 
   return (
     <>
       {res.data && res.data.favorites.length > 0 ? (
         <section className="container max-w-6xl text-neutral-200">
           <Link
-            href={"/my-favorites"}
-            className="text-neutral-300 hover:underline"
+            href={"favorites"}
+            className="text-neutral-300 underline"
           >
             My Favorites:
           </Link>

@@ -1,6 +1,5 @@
 import { API } from "./api";
 
-
 type Favorite = {
   imdbID: string;
   _id: string;
@@ -11,7 +10,6 @@ type User = {
   externalId: string;
   favorites: Favorite[];
 };
-
 
 const APIService = {
   createAccount: async (id: string) => {

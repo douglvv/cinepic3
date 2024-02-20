@@ -4,7 +4,6 @@ import { HydratedDocument } from "mongoose";
 import { NextApiRequest } from "next";
 import { NextResponse, type NextRequest } from "next/server.js";
 
-// VERIFICAR SE O ID É O MESMO DA SESSAO ATIVA
 export async function GET(
   req: NextApiRequest,
   { params }: { params: { id: string } }
@@ -34,7 +33,7 @@ export async function GET(
       favorites: user.favorites,
     };
 
-    await db.disconnect();
+    // await db.disconnect();
 
     return NextResponse.json(userData, { status: 200 });
   } catch (error: any) {
