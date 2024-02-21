@@ -25,7 +25,7 @@ function Hero() {
             Explore a vast collection of movies, series, games, and more.
           </h1>
 
-          <div className="max-w-96 mx-auto m-4">
+          <div className="max-w-96 mx-auto m-4 text-nowrap">
             <Link
               className="rounded-md m-2 py-2 px-4 md:py-4 md:px-8 bg-red-800 
               font-semibold text-center text-neutral-200 text-lg md:text-xl
