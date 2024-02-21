@@ -1,37 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cinepic
 
-## Getting Started
+## [PT-BR](#descrição-do-projeto)
 
-First, run the development server:
+## [EN](#project-description)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Descrição do Projeto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Uma aplicação web projetada para fornecer aos usuários informações sobre filmes e séries do banco de dados do IMDb. Permite que os usuários pesquisem e acessem informações detalhadas sobre seus títulos favoritos. Além disso, os usuários podem salvar títulos em seus favoritos para acessá-los facilmente posteriormente.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Demonstração ao Vivo
 
-## Learn More
+Você pode conferir uma demonstração do projeto [aqui](https://cinepic.vercel.app/).
 
-To learn more about Next.js, take a look at the following resources:
+## Tecnologias Utilizadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 14:** Framework para construção de aplicativos web full-stack.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Clerk:** Integrado para autenticação e autorização seguras do usuário.
 
-## Deploy on Vercel
+- **MongoDB:** Utilizado como banco de dados para armazenar dados do usuário e títulos favoritos.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **OMDB API:** Usado para buscar informações sobre filmes e séries no banco de dados do IMDb.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# cinepic3
+- **Tailwind CSS:** Utilizado para estilização dos componentes da interface do usuário.
+
+- **Shadcn UI:** Utilizado para criar componentes de interface do usuário personalizáveis.
+
+- **SVIX Webhooks:** Utilizado como um verificador de assinatura de webhook para lidar de forma segura com solicitações recebidas e sincronizar o Clerk com o banco de dados.
+
+- **ngrok:** Utilizado como ferramenta de teste de webhook durante o desenvolvimento.
+
+---
+
+## Project Description
+
+A web application designed to provide users with information about movies and series from the IMDb database. Allows users to search for and access detailed information about their favorite titles. Additionally, users can save titles to their favorites for easy access later.
+
+## Live Demo
+
+You can check out a live demo of the project [here](https://cinepic.vercel.app/).
+
+## Technologies Used
+
+- **Next.js 14:** Framework for building full-stack web applications.
+
+- **Clerk:** Integrated for secure user authentication and authorization.
+
+- **MongoDB:** Employed as the database to store user data and favorite titles.
+
+- **OMDB API:** Used to fetch information about movies and series from the IMDb database.
+
+- **Tailwind CSS:** Used for styling of user interface components.
+
+- **Shadcn UI:** Utilized for creating customizable UI components.
+
+- **SVIX Webhooks:** Used as a webhook signature verifier to securely handle incoming requests and sync Clerk with the database.
+
+- **ngrok:** Used as a webhook testing tool during development.
+
