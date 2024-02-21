@@ -33,7 +33,7 @@ function Hero() {
               hover:bg-red-900 focus:outline-none focus:shadow-lg active:bg-red-950"
               href="/sign-up"
             >
-              Create an account now
+              Create an account
             </Link>
           </div>
         </div>
