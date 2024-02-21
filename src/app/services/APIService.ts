@@ -16,7 +16,11 @@ const APIService = {
     return await API.post(`/createAccount`, { id: id });
   },
   getUser: async (id: string) => {
-    return await API.get<User>(`/getUser/${id}`);
+    try {
+      return await API.get<User>(`/getUser/${id}`);
+    } catch (error: any) {
+      return error
+    }
   },
   deleteAccount: async (id: string) => {
     return await API.delete("/deleteAccount", {

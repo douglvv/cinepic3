@@ -12,7 +12,7 @@ export default function Page() {
               "bg-red-800 hover:bg-red-900 active:bg-red-950 active:shadow-inner text-neutral-300 hover:text-neutral-200 font-semibold",
           },
         }}
-        // redirectUrl={"/"}
+        redirectUrl={"/"}
         // afterSignUpUrl={"/browse"}
       />
     </div>
