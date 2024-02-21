@@ -6,8 +6,12 @@ import { NextResponse, type NextRequest } from "next/server.js";
 // TODO: verificar se o userId da sessao é o mesmo que irá adicionar aos favoritos
 export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
-    const { id, imdbID, posterUrl }: { id: string; imdbID: string, posterUrl: string } = await req.json();
-    console.log("id: ", id, "imdbID: ", imdbID)
+    const {
+      id,
+      imdbID,
+      posterUrl,
+    }: { id: string; imdbID: string; posterUrl: string } = await req.json();
+    console.log("id: ", id, "imdbID: ", imdbID);
 
     if (!id || !imdbID || !posterUrl) {
       return NextResponse.json(
@@ -18,14 +22,13 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     await db.connect();
 
-    const user = await User.findOne({
+    const user = (await User.findOne({
       externalId: id,
-    }) as HydratedDocument<IUser>;
+    })) as HydratedDocument<IUser>;
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
-
 
     const isTitleAlreadyFavorite: boolean = user.favorites.some(
       (favorite) => favorite.imdbID === imdbID

@@ -2,6 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import axios from "axios";
+import APIService from "@/app/services/APIService";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -58,12 +59,14 @@ export async function POST(req: Request) {
 
   switch (eventType) {
     case "user.created":
-      await axios.post("http://localhost:3000/api/createAccount", { id: id });
+      if(id) await APIService.createAccount(id)
+      // await axios.post("http://localhost:3000/api/createAccount", { id: id });
       break;
     case "user.deleted":
-      await axios.delete("http://localhost:3000/api/deleteAccount", {
-        data: { id: id },
-      });
+      if(id) await APIService.deleteAccount(id)
+      // await axios.delete("http://localhost:3000/api/deleteAccount", {
+      //   data: { id: id },
+      // });
       break;
   }
 

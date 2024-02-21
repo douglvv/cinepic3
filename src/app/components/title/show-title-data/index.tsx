@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import StarRating from "../../starts-rating";
 import { Clock10 } from "lucide-react";
 import FavButton from "../../fav-button";
+import OMDBService from "@/app/services/OMDBService";
 
 type Rating = {
   Source: string;
@@ -43,22 +44,20 @@ type SuccessfulResponse = {
 type ApiResponse = SuccessfulResponse | FailedResponse;
 
 async function ShowTitleData({ imdbID }: { imdbID: string }) {
-  const res = await axios.get<ApiResponse>(
-    `https://www.omdbapi.com/?apikey=6b526007&i=${imdbID}&plot=full`
-  );
+  const res = await OMDBService.getTitle(imdbID);
 
   return (
     <>
-      {res.data.Response === "False" ? (
+      {res.Response === "False" ? (
         redirect("/not-found")
       ) : (
         <>
           <div className="mx-3 flex justify-center">
             <img
               src={
-                res.data.Poster === "N/A"
+                res.Poster === "N/A"
                   ? "/placeholderPoster.jpg"
-                  : res.data.Poster
+                  : res.Poster
               }
               alt="Poster"
               className="h-auto max-w-[250px] max-h-[375px] aspect-2/3 shadow-lg rounded-lg"
@@ -69,41 +68,41 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
           <div className="flex flex-col max-w-2xl gap-2 mx-3">
             <div className="flex justify-between">
               <h1 className="font-semibold text-4xl drop-shadow-sm text-neutral-200">
-                {res.data.Title}
+                {res.Title}
               </h1>
 
-              <FavButton imdbID={imdbID} posterUrl={res.data.Poster} />
+              <FavButton imdbID={imdbID} posterUrl={res.Poster} />
             </div>
 
             <div className="flex flex-row gap-6 text-neutral-300">
               <h3 className="text-xs md:text-sm font-thin tracking-wider">
-                {res.data.Year}
+                {res.Year}
               </h3>
-              {res.data.totalSeasons && (
+              {res.totalSeasons && (
                 <h3 className="text-xs md:text-sm font-thin tracking-wider">
-                  Seasons: {res.data.totalSeasons}
+                  Seasons: {res.totalSeasons}
                 </h3>
               )}
               <div className="flex gap-1">
                 <Clock10 size={20} strokeWidth={1} />
                 <h3 className="text-xs md:text-sm font-thin tracking-wider">
-                  {res.data.Runtime}
+                  {res.Runtime}
                 </h3>
               </div>
               <div className="flex gap-2">
                 <h3 className="text-xs md:text-sm font-thin tracking-wider">
-                  {res.data.imdbRating}
+                  {res.imdbRating}
                   <small className="dark:text-neutral-400 text-neutral-500 italic">
                     /10
                   </small>
                 </h3>
-                <StarRating percentage={parseFloat(res.data.imdbRating) * 10} />
+                <StarRating percentage={parseFloat(res.imdbRating) * 10} />
               </div>
             </div>
 
             <div className="flex flex-row gap-6 mb-6 text-neutral-300">
               <h3 className="text-xs md:text-sm font-thin tracking-wider -mx-1">
-                {res.data.Genre?.split(", ").map((item, index) => (
+                {res.Genre?.split(", ").map((item, index) => (
                   <span
                     key={index}
                     className="inline-block whitespace-nowrap bg-neutral-500/40
@@ -119,19 +118,19 @@ async function ShowTitleData({ imdbID }: { imdbID: string }) {
             <div className="flex flex-row gap-6 text-neutral-300">
               <h3 className="text-xs md:text-sm font-thin tracking-wider">
                 Director:{" "}
-                <span className="font-medium">{res.data.Director}</span>
+                <span className="font-medium">{res.Director}</span>
               </h3>
             </div>
 
             <div className="flex flex-row gap-6 text-neutral-300">
               <h3 className="text-xs md:text-sm font-thin tracking-wider">
-                Actors: <span className="font-medium">{res.data.Actors}</span>
+                Actors: <span className="font-medium">{res.Actors}</span>
               </h3>
             </div>
 
             <div className="flex flex-row mt-6">
               <h6 className="font-thin tracking-wider text-xs md:text-sm text-neutral-200">
-                {res.data.Plot}
+                {res.Plot}
               </h6>
             </div>
           </div>

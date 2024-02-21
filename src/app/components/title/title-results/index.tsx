@@ -1,6 +1,7 @@
 import axios from "axios";
 import TitleCard from "../title-card";
 import PaginationControls from "../../pagination-controls";
+import OMDBService from "@/app/services/OMDBService";
 
 export type SearchResults = {
   Title: string;
@@ -30,13 +31,11 @@ async function TitleResults({
   query: string;
   currentPage: string;
 }) {
-  const res = await axios.get<ApiResponse>(
-    `https://www.omdbapi.com/?apikey=6b526007&s=${query}&page=${currentPage}`
-  );
+  const res = await OMDBService.searchTitle(query, currentPage);
 
   return (
     <>
-      {res.data.Response === "False" ? (
+      {res.Response === "False" ? (
         <div
           className="flex justify-center mx-4 md:mx-8 w-full mt-3
          text-neutral-600 text-sm dark:text-neutral-400"
@@ -45,14 +44,14 @@ async function TitleResults({
         </div>
       ) : (
         <div className="my-8 flex flex-row flex-wrap gap-4 justify-center">
-          {res.data.Search.map((result: SearchResults, i: number) => (
+          {res.Search.map((result: SearchResults, i: number) => (
             <TitleCard result={result} key={i} />
           ))}
 
           <PaginationControls
             currentPage={currentPage}
             perPage={"10"}
-            totalResults={res.data.totalResults}
+            totalResults={res.totalResults}
             query={query}
           />
         </div>

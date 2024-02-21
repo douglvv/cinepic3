@@ -4,6 +4,7 @@ import { Star, StarOff } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import APIService from "@/app/services/APIService";
 
 type Favorite = {
   imdbID: string;
@@ -25,16 +26,12 @@ function FavButton({
   const { user, isLoaded } = useUser();
   const [isFavorite, setIsFavorite] = useState(false);
 
-  console.log("user: ", user);
-
   const fetchUser = async (): Promise<User | null> => {
     try {
       if (!user) return null;
-      const res = await axios.get<User>(
-        `http://localhost:3000/api/getUser/${user.id}`
-      );
+      const res = await APIService.getUser(user.id);
 
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     } catch (error: any) {
       console.log(error.message);
@@ -45,21 +42,24 @@ function FavButton({
   const handleClick = async (): Promise<void> => {
     try {
       if (user && isLoaded) {
-        const res = await axios.post(
-          `http://localhost:3000/api/${
-            isFavorite ? "removeFromFavorites" : "addToFavorites"
-          }`,
-          {
+        if (!isFavorite) {
+          const res = await APIService.addtoFavorites({
             id: user?.id,
             imdbID: imdbID,
             posterUrl: posterUrl,
-          }
-        );
-        // console.log("handleclick: ", user?.id);
+          });
+          if (res.status === 200) setIsFavorite(!isFavorite);
+          return
+        }
+
+        const res = await APIService.removeFromFavorites({
+          id: user?.id,
+          imdbID: imdbID,
+        });
         if (res.status === 200) setIsFavorite(!isFavorite);
-      }
-      else {
-        alert("Please sign in to add to favorites.")
+        return
+      } else {
+        alert("Please sign in to add to favorites.");
       }
     } catch (error: any) {
       console.log(error.message);
