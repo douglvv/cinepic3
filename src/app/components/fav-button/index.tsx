@@ -2,9 +2,11 @@
 "use client";
 import { Star, StarOff } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import APIService from "@/app/services/APIService";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 type Favorite = {
   imdbID: string;
@@ -48,18 +50,24 @@ function FavButton({
             imdbID: imdbID,
             posterUrl: posterUrl,
           });
-          if (res.status === 200) setIsFavorite(!isFavorite);
-          return
+          if (res.status === 200) {
+            setIsFavorite(!isFavorite);
+            toast.success('Title added to favorites', { position: "top-right" });
+          }
+          return;
         }
-
+  
         const res = await APIService.removeFromFavorites({
           id: user?.id,
           imdbID: imdbID,
         });
-        if (res.status === 200) setIsFavorite(!isFavorite);
-        return
+        if (res.status === 200) {
+          setIsFavorite(!isFavorite);
+          toast.success('Title removed from favorites', { position: "top-right" });
+        }
+        return;
       } else {
-        alert("Please sign in to add to favorites.");
+        toast.warning('Please sign in to add to favorites.', { position: "top-right" });
       }
     } catch (error: any) {
       console.log(error.message);
