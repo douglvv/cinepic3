@@ -5,7 +5,7 @@ import { NextApiRequest } from "next";
 import { NextResponse, type NextRequest } from "next/server.js";
 
 export async function GET(
-  req: NextApiRequest,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ): Promise<NextResponse> {
   try {
