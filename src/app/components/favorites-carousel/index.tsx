@@ -7,7 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import axios from "axios";
 import Link from "next/link";
 
 type Favorite = {
@@ -32,7 +31,7 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
         <section className="container max-w-6xl text-neutral-200">
           <Link
             href={"/favorites"}
-            className="text-neutral-300 underline"
+            className="text-neutral-300 hover:text-neutral-200 underline"
           >
             My Favorites:
           </Link>
