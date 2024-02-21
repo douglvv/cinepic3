@@ -52,7 +52,7 @@ function FavButton({
           });
           if (res.status === 200) {
             setIsFavorite(!isFavorite);
-            toast.success('Title added to favorites', { position: "top-right" });
+            toast('Title added to favorites', { position: "top-right" });
           }
           return;
         }
@@ -63,7 +63,7 @@ function FavButton({
         });
         if (res.status === 200) {
           setIsFavorite(!isFavorite);
-          toast.success('Title removed from favorites', { position: "top-right" });
+          toast('Title removed from favorites', { position: "top-right" });
         }
         return;
       } else {
