@@ -4,9 +4,9 @@ import { Star, StarOff } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import APIService from "@/app/services/APIService";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { revalidatePath } from "next/cache";
 
 type Favorite = {
   imdbID: string;
@@ -50,24 +50,30 @@ function FavButton({
             imdbID: imdbID,
             posterUrl: posterUrl,
           });
-          if (res.status === 200) {
-            setIsFavorite(!isFavorite);
-            toast('Title added to favorites', { position: "top-right" });
+          if (res.status === 200) {            
+            setIsFavorite(!isFavorite);            
+            toast("Title added to favorites", { position: "top-right" });
+            revalidatePath("/browse");
+            revalidatePath("/favorites");
           }
           return;
         }
-  
+
         const res = await APIService.removeFromFavorites({
           id: user?.id,
           imdbID: imdbID,
         });
-        if (res.status === 200) {
-          setIsFavorite(!isFavorite);
-          toast('Title removed from favorites', { position: "top-right" });
+        if (res.status === 200) {          
+          setIsFavorite(!isFavorite);          
+          toast("Title removed from favorites", { position: "top-right" });
+          revalidatePath("/browse");
+          revalidatePath("/favorites");
         }
         return;
       } else {
-        toast.warning('Please sign in to add to favorites.', { position: "top-right" });
+        toast.warning("Please sign in to add to favorites.", {
+          position: "top-right",
+        });
       }
     } catch (error: any) {
       console.log(error.message);
