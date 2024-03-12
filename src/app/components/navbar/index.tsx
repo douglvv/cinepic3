@@ -3,44 +3,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SeachInput from "../search-input";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { UserButton, useAuth } from "@clerk/nextjs";
 import { LogIn, Star, X } from "lucide-react";
 import { dark } from "@clerk/themes";
 import { Search } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { isSignedIn, isLoaded } = useAuth();
 
   const toggleSearchBar = () => {
+    if(typeof window !== 'undefined') window.scrollTo({top: 0, behavior: 'instant'})
     setIsOpen(!isOpen);
   };
-
-  // const [color, setColor] = useState(false);
-
-  // const changeNav = () => {
-  //   if (typeof window !== "undefined") {
-  //     if (window.scrollY >= 90) setColor(true);
-  //     else setColor(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", changeNav);
-
-  //   return () => {
-  //     window.removeEventListener("scroll", changeNav);
-  //   };
-  // }, []);
 
   return (
     <>
       <nav
         className={`w-full flex items-center justify-between sticky top-0 
       flex-wrap z-50 bg-black/80 backdrop-blur-xl px-8 transition 
-      duration-300 h-[10vh] border-b border-neutral-800`}
+      duration-300 min-h-fit py-4 border-b border-neutral-800`}
       >
         <div className="flex items-center justify-center gap-3">
           <Link
@@ -59,11 +42,11 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="md:flex items-center justify-center w-[33%]l hidden">
+        <div className="md:flex items-center justify-center w-[33%] hidden">
           <SeachInput />
         </div>
 
-        <div className="flex items-center justify-center gap-8">
+        <div className="flex items-center justify-center gap-4 md:gap-8">
           <button
             className="text-neutral-300 hover:text-neutral-200 flex md:hidden"
             title="Search"
