@@ -9,7 +9,7 @@ function Browse() {
       {userId && (
         <>
           <div
-            className="min-h-[90vh] text-neutral-200 flex flex-col gap-4 mt-8 
+            className="min-h-[90vh] text-neutral-200 flex flex-col gap-4 my-8 
             container max-w-6xl mx-auto"
           >
             <div className="w-full flex mb-4">
