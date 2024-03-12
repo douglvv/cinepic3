@@ -45,6 +45,7 @@ async function FavoritesCarousel({ userId }: { userId: string | null }) {
               align: "center",
               dragFree: true,
               loop: false,
+              slidesToScroll: "auto",              
             }}
           >
             <CarouselContent className="mt-4">
